@@ -1,0 +1,28 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.comments-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.comment {
+	width: 70%;
+	margin: 3rem auto 0 auto;
+}
+
+.header {
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+.comments {
+	margin-top: 2rem;
+	color: black;
+	text-align: center;
+}

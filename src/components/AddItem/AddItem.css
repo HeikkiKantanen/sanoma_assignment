@@ -1,3 +1,9 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
 .container {
 	height: 100%;
 	background-color: aqua;
@@ -54,6 +60,8 @@
 }
 
 .timeContainer {
+	display: flex;
+	flex-direction: column;
 	margin-right: 50px;
 	width: 200px;
 	background-color: red;
@@ -65,10 +73,13 @@
 }
 
 .time {
-	padding: 30px;
+	margin: 10px;
+	height: 50px;
 }
 
 .nameContainer {
+	display: flex;
+	flex-direction: column;
 	margin-right: 50px;
 	width: 200px;
 	background-color: red;
@@ -76,52 +87,88 @@
 }
 
 .nameLabel {
-	background-color: white;
-	padding: 10px;
+	margin: 10px;
 }
 
 .userName {
-	padding: 30px;
+	margin: 10px;
+	height: 50px;
 }
 
 .commentContainer {
 	display: flex;
 	flex-direction: column;
-	position: sticky;
-	margin-right: 50px;
 	width: 300px;
 	background-color: red;
+	height: 100%;
 }
 
 .commentLabel {
-	margin-top: 0px;
-	padding: 10px;
-	height: 20px;
-	background-color: white;
+	margin: 10px;
 }
 
 .comment {
-	margin-top: 0px;
-	padding: 0px;
+	margin: 10px;
 	height: 50px;
-	background-color: chartreuse;
+	/* background-color: chartreuse; */
 }
 
 .buttonContainer {
 	display: flex;
-	flex-direction: row;
-	background-color: pink;
+	justify-content: space-between;
+	margin-top: -35px;
 	width: 200px;
+	background-color: pink;
+	height: 25px;
 }
 
 .editButton {
 	width: 100px;
 	height: 30px;
-	margin-left: 200px;
-	margin-bottom: 100px;
 }
 
 .submitEditButton {
 	width: 100px;
 	height: 30px;
 }
+
+.editInput {
+	margin-bottom: 40px;
+}
+
+.x {
+	height: 25px;
+	background-color: yellow;
+}
+
+/* !!!! NEW FIRESTORE VERSION !!!!!! */
+
+/* .commentsContainer {
+	display: flex;
+} */
+
+/* .names {
+	display: flex;
+	flex-direction: column;
+	background-color: red;
+	margin: 10px;
+	padding: 10px;
+} */
+
+/* .name {
+	margin: 10px;
+	height: 50px;
+} */
+
+/* .comments {
+	display: flex;
+	flex-direction: column;
+	background-color: blue;
+	margin: 10px;
+	padding: 10px;
+} */
+
+/* .comment {
+	margin: 10px;
+	height: 50px;
+} */
