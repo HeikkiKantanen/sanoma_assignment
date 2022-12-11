@@ -7,7 +7,7 @@
 
 ## Instructions of use:
 
-### This project is hosted in netlify so you can just access it via the link on the righ hand side or you can run the project locally.
+### This project is hosted in netlify so you can just access it via the link on the right hand side or you can run the project locally.
 
 ### Run the project locally
 
