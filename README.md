@@ -7,7 +7,7 @@
 
 ## Instructions of use:
 
-### This project is hosted in netlify so you can just access it via the link on the righ hand side or you can run the project locally.
+### This project is hosted in netlify so you can just access it via the link on the right hand side or you can run the project locally.
 
 ### Run the project locally
 
@@ -27,7 +27,7 @@
 > npm start
 ```
 
-### After these steps you should see this view in your browser.
+### After these steps you should see this kind of view in your browser.
 
 ![Screenshot of the front page](Screenshot_home.png)
 
