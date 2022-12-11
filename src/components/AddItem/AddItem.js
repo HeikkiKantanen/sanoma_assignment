@@ -4,18 +4,12 @@ import "../AddItem/AddItem.css";
 
 export default function AddItem() {
 	const [comment, setComment] = useState("");
-	// const [time, setTime] = useState("");
 	const [comments, setComments] = useState([]);
 	const [name, setName] = useState("");
 	const [commentEditing, setCommentEditing] = useState(null);
 	const [editingText, setEditingText] = useState("");
 
-	// const [comments, setComments] = useState(() =>
-	// 	JSON.parse(localStorage.getItem("comments"))
-	// );
-	// useEffect(() => {
-	// 	localStorage.setItem("comments", JSON.stringify(comments));
-	// }, [comments]);
+	// Gets data from localStorage
 
 	useEffect(() => {
 		const comments = JSON.parse(localStorage.getItem("comments"));
@@ -24,11 +18,17 @@ export default function AddItem() {
 		}
 	}, []);
 
+	// Sets data as a key and value pair to localStorage
+
 	useEffect(() => {
 		localStorage.setItem("comments", JSON.stringify(comments));
 	}, [comments]);
 
+	// Defines a time variable which will give us the date and time of the comment added
+
 	const time = new Date().toLocaleString();
+
+	// Defines a function which will add the time, username and comment to the comments array when the form is submitted
 
 	const addComment = (e) => {
 		e.preventDefault();
@@ -45,6 +45,8 @@ export default function AddItem() {
 		setName("");
 		setComment("");
 	};
+
+	// Defines a function which allows us to edit the comments
 
 	const editComment = (id) => {
 		const updatedComments = [...comments].map((comment) => {
@@ -67,6 +69,7 @@ export default function AddItem() {
 						Name
 					</label>
 					<input
+						required
 						className="nameInput"
 						type="text"
 						id="name"
@@ -80,6 +83,7 @@ export default function AddItem() {
 						Comment
 					</label>
 					<textarea
+						required
 						maxLength={50}
 						className="commentInput"
 						type="text"
@@ -147,63 +151,6 @@ export default function AddItem() {
 					</tr>
 				</tbody>
 			</table>
-			{/* <div className="commentsContainer">
-				<div className="timeContainer">
-					<label className="timeLabel" htmlFor="time">
-						Time
-					</label>
-					{comments.map((time) => (
-						<div key={time.id}>
-							<div className="time">{time.id}</div>
-						</div>
-					))}
-				</div>
-				<div className="nameContainer">
-					<label className="nameLabel" htmlFor="name">
-						Username
-					</label>
-					{comments.map((name) => (
-						<div key={name.id}>
-							<div className="userName">{name.user}</div>
-						</div>
-					))}
-				</div>
-				<div className="commentContainer">
-					<label className="commentLabel" htmlFor="comment">
-						Comment
-					</label>
-					<div>
-						{comments.map((comment) => (
-							<div key={comment.id}>
-								{commentEditing === comment.id ? (
-									<input
-										className="editInput"
-										type="text"
-										onChange={(e) => setEditingText(e.target.value)}
-										value={editingText}
-									/>
-								) : (
-									<p className="comment">{comment.text}</p>
-								)}
-								<div className="buttonContainer">
-									<button
-										className="editButton"
-										onClick={() => setCommentEditing(comment.id)}
-									>
-										Edit
-									</button>
-									<button
-										className="submitEditButton"
-										onClick={() => editComment(comment.id)}
-									>
-										Submit Edits
-									</button>
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</div> */}
 		</div>
 	);
 }
