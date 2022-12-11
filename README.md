@@ -27,7 +27,7 @@
 > npm start
 ```
 
-### After these steps you should see this view in your browser.
+### After these steps you should see this kind of view in your browser.
 
 ![Screenshot of the front page](Screenshot_home.png)
 
