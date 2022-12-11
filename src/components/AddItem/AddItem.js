@@ -1,32 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../Button/Button";
 import "../AddItem/AddItem.css";
 
 export default function AddItem() {
 	const [comment, setComment] = useState("");
+	// const [time, setTime] = useState("");
 	const [comments, setComments] = useState([]);
-	const [name, setName] = useState();
+	const [name, setName] = useState("");
 	const [commentEditing, setCommentEditing] = useState(null);
-	const [editingComment, setEditingComment] = useState("");
+	const [editingText, setEditingText] = useState("");
 
-	// const ctx = useContext(CommentContext);
+	// const [comments, setComments] = useState(() =>
+	// 	JSON.parse(localStorage.getItem("comments"))
+	// );
+	// useEffect(() => {
+	// 	localStorage.setItem("comments", JSON.stringify(comments));
+	// }, [comments]);
 
-	// const changeHandler = (e) => {
-	// 	const { name, value } = e.target;
+	useEffect(() => {
+		const comments = JSON.parse(localStorage.getItem("comments"));
+		if (comments) {
+			setComments(comments);
+		}
+	}, []);
 
-	// 	setItem((prevState) => ({
-	// 		...prevState,
-	// 		[name]: value,
-	// 	}));
-	// 	console.log(item);
-	// };
+	useEffect(() => {
+		localStorage.setItem("comments", JSON.stringify(comments));
+	}, [comments]);
 
-	// const addHandler = (e) => {
-	// 	e.preventDefault();
-	// 	ctx.addItem(item);
-	// };
-
-	const time = new Date().toLocaleTimeString();
+	const time = new Date().toLocaleString();
 
 	const addComment = (e) => {
 		e.preventDefault();
@@ -47,17 +49,18 @@ export default function AddItem() {
 	const editComment = (id) => {
 		const updatedComments = [...comments].map((comment) => {
 			if (comment.id === id) {
-				comment.comment = editingComment;
+				comment.text = editingText;
 			}
 			return comment;
 		});
 		setComments(updatedComments);
 		setCommentEditing(null);
-		setEditingComment("");
+		setEditingText("");
 	};
 
 	return (
 		<div className="container">
+			<h1 className="header">Sanoma App</h1>
 			<form onSubmit={addComment} className={"form"}>
 				<div>
 					<label className="nameInputLabel" htmlFor="name">
@@ -76,7 +79,8 @@ export default function AddItem() {
 					<label className="commentInputLabel" htmlFor="comment">
 						Comment
 					</label>
-					<input
+					<textarea
+						maxLength={50}
 						className="commentInput"
 						type="text"
 						id="comment"
@@ -87,7 +91,63 @@ export default function AddItem() {
 				</div>
 				<Button type="submit">Add Comment</Button>
 			</form>
-			<div className="commentsContainer">
+			<table className="commentsContainer">
+				<tbody>
+					<tr className="heads">
+						<th className="timeLabel">Time</th>
+						<th className="nameLabel">Name</th>
+						<th className="commentLabel">Comment</th>
+					</tr>
+					<tr className="comments">
+						<td className="timeColumn">
+							{comments?.map((time, i) => (
+								<div className="timeContainer" key={i}>
+									<td className="time">{time?.id}</td>
+								</div>
+							))}
+						</td>
+						<td className="nameColumn">
+							{comments?.map((name, i) => (
+								<div className="nameContainer" key={i}>
+									<td className="userName">{name?.user}</td>
+								</div>
+							))}
+						</td>
+						<td className="commentColumn">
+							{comments?.map((comment, i) => (
+								<div className="commentContainer" key={i}>
+									{commentEditing === comment?.id ? (
+										<input
+											maxLength={50}
+											className="editInput"
+											type="text"
+											onChange={(e) => setEditingText(e.target.value)}
+											value={editingText}
+										/>
+									) : (
+										<td className="comment">{comment?.text}</td>
+									)}
+									<div className="buttonContainer">
+										<button
+											className="editButton"
+											onClick={() => setCommentEditing(comment?.id)}
+										>
+											Edit
+										</button>
+										<button
+											className="submitEditButton"
+											onClick={() => editComment(comment?.id)}
+										>
+											Submit Edits
+										</button>
+									</div>
+								</div>
+							))}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			{/* <div className="commentsContainer">
 				<div className="timeContainer">
 					<label className="timeLabel" htmlFor="time">
 						Time
@@ -119,8 +179,8 @@ export default function AddItem() {
 									<input
 										className="editInput"
 										type="text"
-										onChange={(e) => setEditingComment(e.target.value)}
-										value={editingComment}
+										onChange={(e) => setEditingText(e.target.value)}
+										value={editingText}
 									/>
 								) : (
 									<p className="comment">{comment.text}</p>
@@ -143,7 +203,7 @@ export default function AddItem() {
 						))}
 					</div>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 }
